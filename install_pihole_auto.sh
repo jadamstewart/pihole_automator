@@ -24,7 +24,7 @@ set_static_ip() {
 
         # settings to append
         interface_type='interface eth0'
-        static_ip='        static ip_address=192.168.42.4/24'
+        static_ip='        static ip_address=192.168.42.3/24'
         static_routers='        static routers=192.168.42.1'
         static_dns_servers='        static domain_name_servers=8.8.8.8 8.8.4.4'
 
