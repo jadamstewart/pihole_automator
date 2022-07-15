@@ -30,13 +30,14 @@ install_wget() {
 # update the dhcp settings to define a static ip address
 set_static_ip() {
         echo "ip address is $1"
-        
+        ip_array=(${IP//./ })
+        echo "ip part is: $ip_array[$3]"
         # Define the filename
         filename='/etc/dhcpcd.conf'
 
         # settings to append
         interface_type='interface eth0'
-        static_ip='        static ip_address=192.168.42.3/24'
+        static_ip='        static ip_address=$1/24'
         static_routers='        static routers=192.168.42.1'
         static_dns_servers='        static domain_name_servers=8.8.8.8 8.8.4.4'
 

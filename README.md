@@ -10,3 +10,9 @@ brew install wget
 ```
 wget -O - https://raw.githubusercontent.com/jadamstewart/pihole_automator/main/install_pihole_auto.sh | sudo bash
 ```
+
+```
+wget -O install_pihole_auto.sh https://raw.githubusercontent.com/jadamstewart/pihole_automator/main/install_pihole_auto.sh
+chmod +x install_pihole_auto.sh
+sudo ./install_pihole_auto.sh
+```
