@@ -25,7 +25,7 @@ set_static_ip() {
         # settings to append
         interface_type='interface eth0'
         static_ip='        static ip_address=192.168.42.4/24'
-        static_gateway='        static routers=192.168.42.1'
+        static_routers='        static routers=192.168.42.1'
         static_dns_servers='        static domain_name_servers=8.8.8.8 8.8.4.4'
 
         # Append the text by using '>>' symbol
@@ -35,6 +35,7 @@ set_static_ip() {
         echo "$static_dns_servers" >> $filename
         
         #TODO: probably need to reboot after this, but maybe I can just restart a process?
+        ifconfig eth0 down && echo "Sleeping for 5s" && sleep 5 && echo "waking up" && sudo ifconfig eth0 up
 }
 
 # Main install function, this installs pihole, unbound and wget which we use to get some config files
