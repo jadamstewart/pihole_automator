@@ -31,7 +31,7 @@ set_static_ip() {
         # Append the text by using '>>' symbol
         echo "$interface_type" >> $filename
         echo "$static_ip" >> $filename
-        echo "$static_gateway" >> $filename
+        echo "$static_routers" >> $filename
         echo "$static_dns_servers" >> $filename
         
         #TODO: probably need to reboot after this, but maybe I can just restart a process?
