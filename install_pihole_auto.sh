@@ -29,8 +29,9 @@ install_wget() {
 
 # update the dhcp settings to define a static ip address
 set_static_ip() {
-        echo "ip address is $1"
-        ip_array=(${IP//./ })
+        ip_address=$1
+        echo "ip address is $ip_address"
+        ip_array=(${ip_address//./ })
         echo "ip part is: ${ip_array[3]}"
         # Define the filename
         filename='/etc/dhcpcd.conf'
