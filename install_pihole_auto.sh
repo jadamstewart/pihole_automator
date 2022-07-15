@@ -29,6 +29,8 @@ install_wget() {
 
 # update the dhcp settings to define a static ip address
 set_static_ip() {
+        echo "ip address is $1"
+        
         # Define the filename
         filename='/etc/dhcpcd.conf'
 
@@ -60,7 +62,11 @@ pihole_install() {
         fi
 }
 
-install_brew
-install_wget
-set_static_ip
+
+read -p "What ip address should this use: " ip_address
+#TODO: brew wants to be run as NOT root, but other stuff needs root
+# Since pi comes with wget already, we will skip this for now
+#install_brew
+#install_wget
+set_static_ip "$ip_address"
 pihole_install
