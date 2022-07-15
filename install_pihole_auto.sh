@@ -16,6 +16,16 @@ is_command() {
         command -v "${check_command}" > /dev/null 2>&1
 }
 
+install_brew() {
+        echo "Installing Homebrew"
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+}
+
+install_wget() {
+        echo "Installing wget"
+        brew install wget
+}
+
 
 # update the dhcp settings to define a static ip address
 set_static_ip() {
@@ -50,5 +60,7 @@ pihole_install() {
         fi
 }
 
+install_brew
+install_wget
 set_static_ip
 pihole_install
