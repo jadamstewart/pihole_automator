@@ -31,7 +31,7 @@ install_wget() {
 set_static_ip() {
         echo "ip address is $1"
         ip_array=(${IP//./ })
-        echo "ip part is: $ip_array[$3]"
+        echo "ip part is: ${ip_array[3]}"
         # Define the filename
         filename='/etc/dhcpcd.conf'
 
