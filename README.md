@@ -1,1 +1,1 @@
-# pihole_automater
+# pihole_automator
