@@ -17,6 +17,25 @@ is_command() {
 }
 
 
+# update the dhcp settings to define a static ip address
+set_static_ip() {
+        # Define the filename
+        filename='/etc/dhcpcd.conf'
+
+        # settings to append
+        interface_type='interface eth0'
+        static_ip='        static ip_address=192.168.42.4/24'
+        static_gateway='        static routers=192.168.42.1'
+        static_dns_servers='        static domain_name_servers=8.8.8.8 8.8.4.4'
+
+        # Append the text by using '>>' symbol
+        echo interface_type >> $filename
+        echo static_ip >> $filename
+        echo static_gateway >> $filename
+        echo static_dns_servers >> $filename
+        
+}
+
 # Main install function, this installs pihole, unbound and wget which we use to get some config files
 pihole_install() {
         if is_command apt-get ; then
@@ -29,4 +48,5 @@ pihole_install() {
         fi
 }
 
+set_static_ip
 pihole_install
