@@ -54,7 +54,8 @@ define_pihole_vars() {
         # programmatically generate a web password so I don't have to commit it to github
         webpass="$(dbus-uuidgen)"
         echo "Web password is: ${webpass}"
-        
+        sha_pwd="$(echo -n ${webpass} | sha256sum | awk '{printf "%s",$1 }' | sha256sum | awk '{printf "%s",$1 }')"
+
         # make the directory if it doesn't exist
         mkdir -p /etc/pihole/test
         
@@ -73,7 +74,7 @@ define_pihole_vars() {
         echo "DNS_FQDN_REQUIRED=true" >> $filename
         echo "DNS_BOGUS_PRIV=true" >> $filename
         echo "DNSMASQ_LISTENING=local" >> $filename
-        echo "WEBPASSWORD=${webpass}" >> $filename
+        echo "WEBPASSWORD=${sha_pwd}" >> $filename
         echo "BLOCKING_ENABLED=true" >> $filename
         echo "ADMIN_EMAIL=zorrax@gmail.com" >> $filename
         echo "WEBUIBOXEDLAYOUT=boxed" >> $filename
