@@ -44,6 +44,7 @@ set_static_ip() {
         echo "$static_dns_servers" >> $filename
         
         #bounce the eth0 interface
+        echo "Bouncing eth0"
         ifconfig eth0 down && echo "Sleeping for 5s..." && sleep 5 && echo "...waking up" && sudo ifconfig eth0 up
 }
 
