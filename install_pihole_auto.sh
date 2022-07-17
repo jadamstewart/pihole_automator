@@ -51,11 +51,15 @@ set_static_ip() {
 define_pihole_vars() {
         ip_address=$1
 
+        # programmatically generate a web password so I don't have to commit it to github
+        webpass="$(dbus-uuidgen)"
+        echo "Web password is: ${webpass}"
+        
         # make the directory if it doesn't exist
         mkdir -p /etc/pihole/test
-
-        filename='/etc/pihole/test/setupVars.conf'
         
+        filename='/etc/pihole/setupVars.conf'
+        rm $filename
         echo "PIHOLE_INTERFACE=eth0" >> $filename
         echo "IPV4_ADDRESS=${ip_address}/24" >> $filename
         echo "IPV6_ADDRESS=" >> $filename
@@ -69,7 +73,7 @@ define_pihole_vars() {
         echo "DNS_FQDN_REQUIRED=true" >> $filename
         echo "DNS_BOGUS_PRIV=true" >> $filename
         echo "DNSMASQ_LISTENING=local" >> $filename
-        echo "WEBPASSWORD=0304505A52664BF4B069EDB511F97137" >> $filename
+        echo "WEBPASSWORD=${webpass}" >> $filename
         echo "BLOCKING_ENABLED=true" >> $filename
         echo "ADMIN_EMAIL=zorrax@gmail.com" >> $filename
         echo "WEBUIBOXEDLAYOUT=boxed" >> $filename
